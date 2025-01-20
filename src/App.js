@@ -21,6 +21,7 @@ class App extends Component {
     }
 
     // Set a user input value
+    // Установить значение, введенное пользователем
     updateInput(value) {
         this.setState({
             userInput: value,
@@ -28,21 +29,27 @@ class App extends Component {
     }
 
     // Add item if user input in not empty
+    // Добавить тему, если пользовательский ввод не пустой
     addItem() {
         if (this.state.userInput !== "") {
             const userInput = {
                 // Add a random id which is used to delete
+                // Добавить случайный идентификатор, 
+                // который используется для удаления
                 id: Math.random(),
 
                 // Add a user value to list
+                // Добавить значение пользователя в список
                 value: this.state.userInput,
             };
 
             // Update list
+            // Обновить список
             const list = [...this.state.list];
             list.push(userInput);
 
             // reset state
+            // Сброс состояния
             this.setState({
                 list,
                 userInput: "",
@@ -50,14 +57,18 @@ class App extends Component {
         }
     }
 
-    // Function to delete item from list use id to delete
+    // Function to delete item from list using id to delete
+    // Функция для удаления элемента из списка 
+    // с использованием идентификатора для удаления
     deleteItem(key) {
         const list = [...this.state.list];
 
         // Filter values and leave value which we need to delete
+        // Отфильтруйте значения и оставьте значение, которое нам нужно удалить
         const updateList = list.filter((item) => item.id !== key);
 
         // Update list in state
+        // Обновить список, в соответствии с сотоянием
         this.setState({
             list: updateList,
         });
@@ -95,7 +106,7 @@ class App extends Component {
                     <Col md={{ span: 5, offset: 4 }}>
                         <InputGroup className="mb-3">
                             <FormControl
-                                placeholder="add item . . . "
+                                placeholder="add item (добавить задачу). . . "
                                 size="lg"
                                 value={this.state.userInput}
                                 onChange={(item) =>
@@ -124,7 +135,7 @@ class App extends Component {
                                 return (
                                   <div key = {index} > 
                                     <ListGroup.Item
-                                        variant="dark"
+                                        variant="light"
                                         action
                                         style={{display:"flex",
                                                 justifyContent:'space-between'
